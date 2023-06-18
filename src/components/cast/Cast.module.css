@@ -1,0 +1,22 @@
+.cast_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+.cast_profile {
+    margin: auto;
+    padding: 10px;
+}
+
+.cast_data {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.cast_image {
+    width: 200px;
+    height: 300px;
+}

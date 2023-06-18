@@ -1,0 +1,26 @@
+.movie_poster {
+  width: 400px;
+  height: 600px;
+}
+
+.image_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.moviepage_section {
+  display: flex;
+  flex-direction: row;
+}
+
+.movieinfo_container {
+  margin-left: 20px;
+}
+
+.genre_list {
+  list-style: none;
+}
+
+/* .additionalinfo_container {
+  
+} */
