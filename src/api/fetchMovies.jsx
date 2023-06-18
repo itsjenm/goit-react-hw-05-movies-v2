@@ -25,7 +25,7 @@ export function fetchMovies(searchQuery, page = '1') {
   const SEARCH_PARAMS = '&language=en-US&include_adult=false';
 
   return fetchWithErrorHandling(
-    `${BASE_URL}${PATH_PARAMS}${API_KEY}&query=${searchQuery}&page=${page}`
+    `${BASE_URL}${PATH_PARAMS}${API_KEY}&${searchQuery}&page=${page}`
   );
 }
 
