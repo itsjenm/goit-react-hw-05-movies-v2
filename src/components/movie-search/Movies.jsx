@@ -27,19 +27,21 @@ const Movies = () => {
 
   useEffect(() => {
     fetchMovies(searchParam).then(data => {
-      // console.log(data.results)
+      console.log(searchParam)
       setResults(data.results);
+      // localStorage.setItem('searchParam', JSON.stringify(formValues.name));
     });
-  }, [searchParam]);
+  }, [searchParam, formValues]);
 
-  console.log(results)
+  // console.log(results)
 
   function handleInputChange(event) {
     // console.log(event.target.value);
     setSearchParam({ name: event.target.value})
     setFormValues({ ...formValues, name: event.target.value})
-    
+    localStorage.setItem('searchParam', JSON.stringify(event.target.value));
   }
+
 
   function handleSubmit(event) {
     event.preventDefault();
