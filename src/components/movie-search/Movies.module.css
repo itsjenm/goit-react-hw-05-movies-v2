@@ -1,0 +1,16 @@
+.form_container {
+    display: flex;
+}
+
+.form_title {
+    margin-left: 5px;
+}
+
+.inputbox {
+    width: 220px;
+    margin-left: 5px;
+}
+
+.movie_list {
+    margin: auto;
+}
