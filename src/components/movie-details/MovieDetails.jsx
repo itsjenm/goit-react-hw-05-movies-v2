@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Styled from './MovieDetails.module.css';
 import { fetchMovieDetails } from 'api/fetchMovies';
@@ -8,8 +8,8 @@ import { fetchMovieDetails } from 'api/fetchMovies';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [data, setData] = useState(null);
-
-  // console.log(movieId);
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(data => {
@@ -18,11 +18,17 @@ const MovieDetails = () => {
     });
   }, [movieId]);
 
-  // console.log(data);
-
+  
   return (
     <div>
-    <h5>Click <Link to='/'>Here</Link> to go back to home</h5>
+    {/* Link to go back to movie query search */}
+      <h5>
+        Click <Link onClick={(e) => {
+          console.log(e.currentTarget)
+          e.preventDefault();
+          navigate(-1, {replace: true});
+        }}>Here</Link> to go back 
+      </h5>
       {data && (
         <section className={Styled.moviepage_section}>
           <div className={Styled.image_container}>
@@ -43,8 +49,15 @@ const MovieDetails = () => {
               )}
             </li>
             <div className={Styled.additionalinfo_container}>
-                <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-                <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+              <h4>Additional Information</h4>
+              <ul>
+                <li>
+                  <Link to={`/movies/${movieId}/cast`}>Cast</Link>
+                </li>
+                <li>
+                  <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+                </li>
+              </ul>
             </div>
             {/* <h5>
               Released: {new Date(data.release_date).toLocaleDateString()}

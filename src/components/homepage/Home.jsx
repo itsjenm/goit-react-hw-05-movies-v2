@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 export default function Home() {
-  const { page } = useParams()
+  const { page } = useParams();
   //array for movies
   const [movies, setMovies] = useState([]);
   // const content = [];

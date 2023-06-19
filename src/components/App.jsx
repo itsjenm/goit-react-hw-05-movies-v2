@@ -47,23 +47,24 @@ export const App = () => {
               <MovieDetails />
             </Suspense>
           }
-          
         >
           {/* a page to show cast members */}
-          <Route path='cast' 
-          element={
-            <Suspense fallback={<BarLoader color="#36d7b7" />}>
-              <Cast />
-            </Suspense>
-          }
+          <Route
+            path="cast"
+            element={
+              <Suspense fallback={<BarLoader color="#36d7b7" />}>
+                <Cast />
+              </Suspense>
+            }
           />
           {/* a page to show movie reviews */}
-          <Route path='reviews' 
-          element={
-            <Suspense fallback={<BarLoader color="#36d7b7" />}>
-              <Reviews />
-            </Suspense>
-          }
+          <Route
+            path="reviews"
+            element={
+              <Suspense fallback={<BarLoader color="#36d7b7" />}>
+                <Reviews />
+              </Suspense>
+            }
           />
         </Route>
         {/* paths withs * are paths that are not declared or everything else */}
