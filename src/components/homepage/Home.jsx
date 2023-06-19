@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Styled from './Home.module.css';
 
 export default function Home() {
   const { page } = useParams();
@@ -21,17 +22,19 @@ export default function Home() {
   }, [page]);
 
   return (
-    <div>
+    <div className={Styled.trendingmovies_container}>
       <h1>Movies Trending Today</h1>
-      <h5>
+      {/* <h5>
         Click <Link to="/movies">Here</Link> to search movies
-      </h5>
+      </h5> */}
+      <ul>
       {movies &&
         movies.map(movie => (
           <li key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
+        </ul>
     </div>
   );
 }

@@ -54,7 +54,7 @@ const Cast = () => {
           </ul>
         </>
       ) : (
-        <h3>No Casts</h3>
+        <h3>We don't have any casts for this movie.</h3>
       )}
     </div>
   );

@@ -22,12 +22,12 @@ const MovieDetails = () => {
   return (
     <div>
     {/* Link to go back to movie query search */}
-      <h5>
+      <h5 className={Styled.back_link}>
         Click <Link onClick={(e) => {
           console.log(e.currentTarget)
           e.preventDefault();
           navigate(-1, {replace: true});
-        }}>Here</Link> to go back 
+        }}>here</Link> to go back 
       </h5>
       {data && (
         <section className={Styled.moviepage_section}>

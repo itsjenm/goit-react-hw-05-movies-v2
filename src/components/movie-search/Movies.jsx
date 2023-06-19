@@ -18,6 +18,9 @@ const Movies = () => {
   //       movie.original_title.toLowerCase().includes(title)
   //     )
   // )
+  const [formValues, setFormValues] = useState({
+    name: ""
+  })
 
   // console.log(title);
 
@@ -33,12 +36,17 @@ const Movies = () => {
   function handleInputChange(event) {
     // console.log(event.target.value);
     setSearchParam({ name: event.target.value})
+    setFormValues({ ...formValues, name: event.target.value})
+    
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     nav(`/movies?query=${name}`)
-    
+    setResults([...results, formValues]);
+    setFormValues({
+      name: ''
+    })
   }
 
   return (
@@ -46,7 +54,7 @@ const Movies = () => {
       <form onSubmit={handleSubmit}>
         <h1>Movies</h1>
         <label>Enter a title you want to search for</label>
-        <input type="text" onChange={handleInputChange} value={name} ref={searchRef} />
+        <input type="text" onChange={handleInputChange} value={formValues.name} ref={searchRef} />
         <button type="submit">Submit</button>
         {results.length > 0 ? (
           <ul>
