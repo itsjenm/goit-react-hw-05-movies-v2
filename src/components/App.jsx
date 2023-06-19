@@ -68,7 +68,7 @@ export const App = () => {
           />
         </Route>
         {/* paths withs * are paths that are not declared or everything else */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<HomePage/>} />
       </Routes>
       {/* //hooks outside of routes are going to persist in the app when window routes change// */}
     </div>
