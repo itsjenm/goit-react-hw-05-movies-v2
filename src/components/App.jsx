@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Header } from './header/Header';
-import NotFound from 'pages/NotFound';
 import { PacmanLoader, BarLoader } from 'react-spinners';
 
 //when using lazy and suspense, you import the components below
