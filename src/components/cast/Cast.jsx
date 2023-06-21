@@ -14,7 +14,7 @@ const Cast = () => {
     });
   }, [movieId]);
 
-  console.log(cast);
+  // console.log(cast);
 
   return (
     <div>

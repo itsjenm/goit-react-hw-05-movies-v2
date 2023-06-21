@@ -13,7 +13,7 @@ const Reviews = () => {
     });
   }, [movieId, page]);
 
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div>

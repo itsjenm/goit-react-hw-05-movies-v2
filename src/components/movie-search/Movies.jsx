@@ -8,7 +8,7 @@ const Movies = () => {
   // input useRef 
   const searchRef = useRef(null);
   const [searchParam, setSearchParam] = useSearchParams();
-  console.log(searchParam)
+  // console.log(searchParam)
   //a getter to get title Param
   const name = searchParam.get(('name') || '');
   const nav = useNavigate();
@@ -27,7 +27,7 @@ const Movies = () => {
 
   useEffect(() => {
     fetchMovies(searchParam).then(data => {
-      console.log(searchParam)
+      // console.log(searchParam)
       setResults(data.results);
       // localStorage.setItem('searchParam', JSON.stringify(formValues.name));
     });

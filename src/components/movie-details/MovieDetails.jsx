@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Styled from './MovieDetails.module.css';
 import { fetchMovieDetails } from 'api/fetchMovies';
@@ -8,6 +8,7 @@ import { fetchMovieDetails } from 'api/fetchMovies';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [data, setData] = useState(null);
+  const nav = useNavigate(); 
   
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const MovieDetails = () => {
 
   // Code used to parse to local storage and get query search param 
   const initializeSearchValue = () => {
-    console.log(JSON.parse(localStorage.getItem('searchParam')))
+    // console.log(JSON.parse(localStorage.getItem('searchParam')))
     return JSON.parse(localStorage.getItem('searchParam'));
   }
 
@@ -30,7 +31,7 @@ const MovieDetails = () => {
     <div>
     {/* Link to go back to movie query search */}
       <h5 className={Styled.back_link}>
-        Click <Link to={`/movies?query=${initializeSearchValue()}`}>here</Link> to go back to search 
+        Click <Link to={`/movies?query=${initializeSearchValue()}`}>here</Link> to go back  
       </h5>
       {data && (
         <section className={Styled.moviepage_section}>
