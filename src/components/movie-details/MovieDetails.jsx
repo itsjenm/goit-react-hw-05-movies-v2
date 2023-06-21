@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Outlet, Route, useLocation, useParams, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import Styled from './MovieDetails.module.css';
 import { fetchMovieDetails } from 'api/fetchMovies';
 
+const Cast = lazy(() => import('../../components/cast/Cast'));
+const Reviews = lazy(() => import('../../components/reviews/Reviews'));
+
+
 const MovieDetails = () => {
+  const location = useLocation(); 
   const { movieId } = useParams();
   const [data, setData] = useState(null);
-  const nav = useNavigate(); 
-  
+
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(data => {
@@ -18,11 +22,15 @@ const MovieDetails = () => {
     });
   }, [movieId]);
 
-  // Code used to parse to local storage and get query search param 
-  const initializeSearchValue = () => {
-    // console.log(JSON.parse(localStorage.getItem('searchParam')))
-    return JSON.parse(localStorage.getItem('searchParam'));
-  }
+  // console.log('MovieDetails Location', location);
+
+  const path = location?.state?.from ?? '/';
+
+  // // Code used to parse to local storage and get query search param 
+  // const initializeSearchValue = () => {
+  //   // console.log(JSON.parse(localStorage.getItem('searchParam')))
+  //   return JSON.parse(localStorage.getItem('searchParam'));
+  // }
 
   // // initializeSearchValue()
 
@@ -31,7 +39,7 @@ const MovieDetails = () => {
     <div>
     {/* Link to go back to movie query search */}
       <h5 className={Styled.back_link}>
-        Click <Link to={`/movies?query=${initializeSearchValue()}`}>here</Link> to go back  
+        Click <Link to={path}>here</Link> to go back  
       </h5>
       {data && (
         <section className={Styled.moviepage_section}>
@@ -56,13 +64,19 @@ const MovieDetails = () => {
               <h4>Additional Information</h4>
               <ul>
                 <li>
-                  <Link to={`/movies/${movieId}/cast`}>Cast</Link>
+                  <Link to="cast" state={{ from: path }}>Cast</Link>
                 </li>
                 <li>
-                  <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+                  <Link to="reviews" state={{ from: path }}>Reviews</Link>
                 </li>
               </ul>
             </div>
+            <Suspense>
+              <Routes>
+                <Route path="cast" element={<Cast movieId={movieId} />} />
+                <Route path="reviews" element={<Reviews movieId={movieId} />} />
+              </Routes>
+            </Suspense>
             {/* <h5>
               Released: {new Date(data.release_date).toLocaleDateString()}
             </h5>

@@ -2,10 +2,11 @@ import { fetchTrendingMovies } from 'api/fetchMovies';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Styled from './Home.module.css';
 
 export default function Home() {
+  const location = useLocation(); 
   const { page } = useParams();
   //array for movies
   const [movies, setMovies] = useState([]);
@@ -21,6 +22,8 @@ export default function Home() {
     });
   }, [page]);
 
+  // console.log('HomePage Location', location);
+
   return (
     <div className={Styled.trendingmovies_container}>
       <h1>Movies Trending Today</h1>
@@ -31,7 +34,7 @@ export default function Home() {
       {movies &&
         movies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <Link to={`/movies/${movie.id}`} state={{ from: location.pathname + location.search }}>{movie.title}</Link>
           </li>
         ))}
         </ul>
